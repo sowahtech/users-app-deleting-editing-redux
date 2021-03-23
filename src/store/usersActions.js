@@ -4,3 +4,10 @@
         payload: users
     }
 }
+
+export const deleteUser = (name) => {
+  return {
+      type: 'ADD_USER',
+      payload: name
+  }
+}
