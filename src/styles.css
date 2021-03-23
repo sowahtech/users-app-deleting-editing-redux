@@ -1,0 +1,57 @@
+/*user form styling starts from here*/
+.newUserform {
+    background-color: aquamarine;
+    height: 50vh;
+    width: 50vw;
+}
+
+/*name text box styling here*/
+.nameBox {
+    width: 40vw;
+    margin: 15px 65px;
+    
+}
+
+/*email text box styling here*/
+.emailBox {
+    width: 40vw;
+    margin: 15px 65px;
+}
+
+.emailBox {
+    border: none;
+    border-bottom: 2px solid #20899E;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.nameBox:focus {
+    background-color: #20899E;
+    color: white;
+    border:2px solid #994700;
+}
+.emailBox:focus {
+    background-color: #20899E;
+    color: white;
+    border:2px solid #994700;
+    
+}
+
+/*submit button styling here*/
+.submitButton {
+    margin: 15px 65px;
+    background-color: #20899E;
+    color: cornsilk;
+    border: none;
+    border-radius: 5px;
+
+}
+
+/*user list form styling here*/
+.userList {
+    height: 100%;
+    width: 40vw;
+    background-color: darkcyan;
+    color:whitesmoke7;
+    text-align: center;
+}
