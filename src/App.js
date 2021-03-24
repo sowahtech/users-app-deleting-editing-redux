@@ -13,7 +13,9 @@ class App extends React.Component {
 		this.props.addUser(newUser); 
 	}
 	
-	deleteUser = (name) 
+	deleteUser = (name) => {
+		this.props.deleteUser(name);
+	}
 
 	render() {
 		return (
@@ -26,7 +28,7 @@ class App extends React.Component {
 				{/* List of users */}
 				<div className="userList">
 					{
-						this.props.users.map((user, index) => <UserItem key={index} name={user.name} email={user.email} />)
+						this.props.users.map((user, index) => <UserItem key={index} name={user.name} email={user.email} removeUser = {this.deleteUser} />)
 					}
 				</div>
 			</div>
