@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { addUser } from './store/usersActions';
+import { addUser, deleteUser } from './store/usersActions';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
@@ -13,6 +13,7 @@ class App extends React.Component {
 		this.props.addUser(newUser); 
 	}
 	
+	deleteUser = (name) 
 
 	render() {
 		return (
@@ -38,7 +39,8 @@ const mapStateToProps = (state) => ({
 }) 
 
 const mapDispatchToProps = {
-	addUser: addUser
+	addUser: addUser,
+	deleteUser: deleteUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
