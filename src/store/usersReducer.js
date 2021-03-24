@@ -32,6 +32,9 @@ const usersReducer = (state = initialState, action) => {
         case "ADD_USER":
             const newUser = { name: action.payload.name, email: action.payload.email };
             return {...state, users: [...state.users, newUser]}
+        case "DELETE_USER":
+            const filteredUsers = state.users.filter(user => user.name!==action.payload);
+            return {...state, users:filteredUsers}
         default:
             return state;
     }

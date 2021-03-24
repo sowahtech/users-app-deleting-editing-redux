@@ -7,7 +7,7 @@
 
 export const deleteUser = (name) => {
   return {
-      type: 'ADD_USER',
+      type: 'DELETE_USER',
       payload: name
   }
 }
