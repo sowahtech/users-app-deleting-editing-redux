@@ -1,13 +1,21 @@
-  export const addUser = (users) => {
+  export const addUser = (newUser) => {
     return {
         type: 'ADD_USER',
-        payload: users
+        payload: newUser
     }
 }
 
-export const deleteUser = (name) => {
+export const deleteUser = (user_id) => {
   return {
       type: 'DELETE_USER',
-      payload: name
+      payload: user_id
+  }
+}
+
+export const editUser = (id, updatedInfo) => {
+  return {
+      type: 'EDIT_USER',
+      id: id,
+      updatedInfo: updatedInfo
   }
 }

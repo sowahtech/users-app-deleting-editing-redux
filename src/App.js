@@ -13,8 +13,8 @@ class App extends React.Component {
 		this.props.addUser(newUser); 
 	}
 	
-	deleteUser = (name) => {
-		this.props.deleteUser(name);
+	deleteUser = (user_id) => {
+		this.props.deleteUser(user_id);
 	}
 
 	render() {
@@ -28,7 +28,18 @@ class App extends React.Component {
 				{/* List of users */}
 				<div className="userList">
 					{
-						this.props.users.map((user, index) => <UserItem key={index} name={user.name} email={user.email} removeUser = {this.deleteUser} />)
+						this.props.users.map((user) => {
+							return(
+								<UserItem 
+									key={user.id} 
+									id={user.id} 
+									name={user.name} 
+									email={user.email} 
+									gen={user.gen} 
+									removeUser = {this.deleteUser} 
+								/>
+							);
+						})
 					}
 				</div>
 			</div>
@@ -42,7 +53,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	addUser: addUser,
-	deleteUser: deleteUser
+	deleteUser: deleteUser,
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

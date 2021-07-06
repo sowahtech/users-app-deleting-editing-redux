@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'; 
+import { editUser } from '../store/usersActions';
 
-class UsersForm extends Component {
+class EditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
-            gen: ''
+            name: props.user.name,
+            email: props.user.email,
+            gen: props.user.gen
         };
+        this.id = props.match.params.id;
     }
 
     handleNameChange = (e) => {
@@ -27,14 +30,14 @@ class UsersForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let newUser = { name: this.state.name, email: this.state.email, gen: this.state.gen };
-        this.props.addUser(newUser);
+        let updatedInfo = { name: this.state.name, email: this.state.email, gen: this.state.gen };
+        this.props.editUser(this.id, updatedInfo);
         this.setState({
             name: '',
             email: '',
             gen: ''
         });
-        
+        this.props.history.push('/');
 
     }
 
@@ -48,7 +51,7 @@ class UsersForm extends Component {
                     <br />
                     <input type="text" placeholder="gen" className="genBox" value={this.state.gen} onChange={this.handleGenChange} />
                     <br />
-                    <input type="submit" value='Add User' className="submitButton" />
+                    <input type="submit" value='Update User' className="submitButton" />
                 </form>
 
 
@@ -57,6 +60,14 @@ class UsersForm extends Component {
     }
 }
 
-export default UsersForm;
+const mapStateToProps = (state, ownProps) =>({
+    user: state.users.find(user => user.id === ownProps.match.params.id)
+})
+
+const mapDispatchToProps = {
+    editUser: editUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);
 
 
