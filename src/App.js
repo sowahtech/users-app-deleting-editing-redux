@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { addUser, deleteUser } from './store/usersActions';
+import { addUser, deleteUser, getAllUsers } from './store/usersActions';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
@@ -15,6 +15,10 @@ class App extends React.Component {
 	
 	deleteUser = (user_id) => {
 		this.props.deleteUser(user_id);
+	}
+
+	componentDidMount() {
+		this.props.getAllUsers();
 	}
 
 	render() {
@@ -52,8 +56,9 @@ const mapStateToProps = (state) => ({
 }) 
 
 const mapDispatchToProps = {
-	addUser: addUser,
-	deleteUser: deleteUser,
+	addUser,
+	deleteUser,
+	getAllUsers
 }
 
 

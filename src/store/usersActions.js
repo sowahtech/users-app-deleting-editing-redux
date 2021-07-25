@@ -1,29 +1,55 @@
+// import { getFirestore } from "redux-firestore";
+
 export const addUser = (newUser) => {
   return (dispatch, state, { getFirestore }) => {
-    getFirestore(-+9)
+    getFirestore()
       .collection("users")
-      .add(newUser)
-      .then((doc) => {
-		dispatch({
-			type: 'ADD_USER',
-			payload: newUser
-		})
-      });
+      .add({...newUser, timestamp: getFirestore().FieldValue.serverTimestamp()})
+      .then((doc) => {});
   };
-
 };
 
 export const deleteUser = (user_id) => {
-  return {
-      type: 'DELETE_USER',
-      payload: user_id
-  }
-}
+  return (dispatch, state, { getFirestore }) => {
+    getFirestore()
+      .collection("users")
+      .doc(user_id)
+      .delete()
+      .then(() => {});
+  };
+};
 
 export const editUser = (id, updatedInfo) => {
-  return {
-      type: 'EDIT_USER',
-      id: id,
-      updatedInfo: updatedInfo
-  }
-}
+  return (dispatch, state, { getFirestore }) => {
+    getFirestore()
+		  .collection("users")
+		  .doc(id)
+		  .set(updatedInfo).then(() => {
+        
+      })
+  };
+ 
+};
+
+export const getAllUsers = () => {
+  return (dispatch, state, { getFirestore }) => {
+    getFirestore()
+      .collection("users")
+	    .orderBy("name", "asc")
+      .onSnapshot(
+        (snapshot) => {
+          let users = [];
+          snapshot.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+          });
+          console.log(users);
+          dispatch({
+            type: "SET_ALL_USERS",
+            payload: users,
+          });
+        },
+
+        (err) => {}
+      );
+  };
+};
